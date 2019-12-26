@@ -15,6 +15,15 @@ namespace Infrastructure.Services
         }
         public async Task<string> DownloadFile(string fileUrl, string destination)
         {
+            var directoryName = Path.GetDirectoryName(destination);
+            if (!string.IsNullOrEmpty(directoryName))
+            {
+                if (!Directory.Exists(directoryName))
+                {
+                    System.IO.Directory.CreateDirectory(directoryName);
+                }
+            }
+
             using (var result = await _httpClient.GetAsync(fileUrl).ConfigureAwait(false))
             {
                 if (result.IsSuccessStatusCode)
