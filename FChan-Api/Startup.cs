@@ -26,12 +26,10 @@ namespace FChan_Api
             services.AddHttpClient<IBoardService, BoardService>(client =>
             {
                 client.BaseAddress = new Uri("https://a.4cdn.org/");
-
             });
             services.AddHttpClient<IImageService, ImageService>(client =>
             {
                 client.BaseAddress = new Uri("https://i.4cdn.org/");
-
             });
         }
 

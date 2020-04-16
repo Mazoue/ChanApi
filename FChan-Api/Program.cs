@@ -14,6 +14,7 @@ namespace FChan_Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("https://192.168.1.3:5002");
                     webBuilder.UseStartup<Startup>();
                 });
     }
