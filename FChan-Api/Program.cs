@@ -17,6 +17,7 @@ namespace FChan_Api
                 {
                     logging.ClearProviders();
                     logging.AddConsole();
+                    logging.AddEventLog();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
