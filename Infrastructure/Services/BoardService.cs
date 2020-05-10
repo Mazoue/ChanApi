@@ -34,9 +34,5 @@ namespace Infrastructure.Services
             return await JsonSerializer.DeserializeAsync<ThreadPosts>(await _httpClient.GetStreamAsync($"/{board}/thread/{threadNumber}.json"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }).ConfigureAwait(false);
         }
 
-        public void Dispose()
-        {
-            _httpClient?.Dispose();
-        }
     }
 }
