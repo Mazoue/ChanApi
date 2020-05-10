@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System;
 
 namespace FChan_Api
@@ -22,6 +23,11 @@ namespace FChan_Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FChan API", Version = "v1" });
+            });
+
             services.AddHttpClient();
             services.AddHttpClient<IBoardService, BoardService>(client =>
             {
@@ -42,6 +48,12 @@ namespace FChan_Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FChan API V1");
+            });
 
             app.UseRouting();
 
