@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace FChan_Api
 {
@@ -23,6 +24,9 @@ namespace FChan_Api
                 {
                     webBuilder.UseUrls("https://192.168.1.3:5002", "https://chanapi:5002");
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                    .ReadFrom.Configuration(hostingContext.Configuration)
+                    .Enrich.FromLogContext());
     }
 }
