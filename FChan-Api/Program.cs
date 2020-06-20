@@ -22,7 +22,6 @@ namespace FChan_Api
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("https://192.168.1.3:5002", "https://chanapi:5002");
                     webBuilder.UseStartup<Startup>();
                 })
                 .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
